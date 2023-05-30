@@ -1,0 +1,240 @@
+/* GLOBAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+
+:root {
+  --bgcolor: rgb(255, 255, 255);
+  --bgcolor-dark: #0f2a39;
+
+  --primary: rgb(118, 231, 171);
+  --secondary: rgb(128, 228, 158);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bgcolor);
+  font-family: "Raleway", sans-serif;
+}
+
+p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  /* border: solid blue 3px; */
+
+  /* width: calc(100% - 200px);
+  max-width: 1000px; */
+  width: min(70rem, 100% - 2rem);
+
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-inline: auto;
+}
+
+.button-link {
+  background-color: var(--primary);
+  padding: 14px 16px;
+  border-radius: 8px;
+  color: black !important;
+  text-decoration: none;
+
+  transition: background-color 0.3s ease;
+}
+
+.button-link:hover,
+.button-link:focus {
+  background-color: var(--secondary);
+}
+
+header a,
+#intro a,
+#skills a,
+footer a {
+  color: var(--primary);
+}
+
+header,
+#intro,
+#skills,
+footer {
+  background-color: var(--bgcolor-dark);
+  color: white;
+}
+
+/*  Accessibility ------------------ */
+
+.sr-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1;
+  white-space: nowrap;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+}
+
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background-color: transparent;
+  color: black;
+  margin-inline: auto;
+  font-size: 0.875rem;
+  transform: translateY(-120%);
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  transition: transform 250ms ease-in;
+  background-color: transparent;
+  color: black;
+}
+
+/* HEADER */
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+#myname {
+  font-size: 18px;
+}
+
+header .button-link {
+  padding: 8px 10px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* desktop nav */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+nav a:not(.button-link) {
+  color: white;
+  font-weight: 600;
+}
+
+/* mobile nav */
+
+@media (max-width: 40rem) {
+  .menu-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+  }
+
+  nav ul {
+    display: none;
+  }
+}
+
+/* INTRO */
+
+#intro {
+  text-align: center;
+  /* padding-top: 100px;
+  padding-bottom: 100px; */
+  padding-block: 100px;
+}
+
+#intro .container > * {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: clamp(1.25rem, calc(0.9rem + 1.74vw), 2.25rem);
+  margin: 0;
+}
+
+/* SKILLS */
+
+#skills ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: 30px;
+}
+
+@media (min-width: 40rem) {
+  #skills .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+/* portfolio */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.grid-container img {
+  aspect-ratio: 1.4;
+  object-fit: cover;
+}
+
+/* pseudo element */
+
+article h3 {
+  position: relative;
+}
+
+article h3::after {
+  position: absolute;
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary);
+  bottom: -7px;
+  left: 0px;
+}
+
+/* footer */
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding-block: 10px;
+}
