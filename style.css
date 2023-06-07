@@ -1,13 +1,17 @@
 /* GLOBAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
 
 :root {
   --bgcolor: rgb(255, 255, 255);
   --bgcolor-dark: #0f2a39;
 
   --primary: rgb(118, 231, 171);
+  --primary-muted: #85e7ca7c;
   --secondary: rgb(128, 228, 158);
+
+  --blue: rgb(74, 174, 255);
+  --blue-muted: rgba(74, 174, 255, 0.2);
 }
 
 * {
@@ -21,7 +25,7 @@ html {
 body {
   margin: 0;
   background-color: var(--bgcolor);
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 p {
@@ -34,8 +38,17 @@ a {
   text-decoration: none;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 img {
   width: 100%;
+}
+
+h3 {
+  margin-block: 0;
 }
 
 .container {
@@ -48,6 +61,8 @@ img {
   /* margin-left: auto;
   margin-right: auto; */
   margin-inline: auto;
+
+  padding-block: 10px;
 }
 
 .button-link {
@@ -68,13 +83,14 @@ img {
 header a,
 #intro a,
 #skills a,
+#github a,
 footer a {
   color: var(--primary);
 }
 
 header,
-#intro,
 #skills,
+#github,
 footer {
   background-color: var(--bgcolor-dark);
   color: white;
@@ -89,7 +105,7 @@ footer {
   padding: 0;
   border: 0;
   margin: -1;
-  white-space: nowrap;
+
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
 }
@@ -112,6 +128,13 @@ footer {
 }
 
 /* HEADER */
+
+header {
+  position: sticky;
+  top: 0;
+  border-bottom: solid gray 1px;
+  z-index: 9999;
+}
 
 header .container {
   display: flex;
@@ -153,12 +176,91 @@ nav a:not(.button-link) {
   .menu-toggle {
     display: inline-block;
     position: absolute;
-    top: 1.5rem;
-    right: 2rem;
+    top: 0rem;
+    right: 0.5rem;
+    z-index: 99999;
+
+    /* hamburger styles */
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 10px 2px;
+  }
+
+  /* set button span to pos relative */
+  .menu-toggle span {
+    position: relative;
+  }
+
+  /* create before & after pseudo elements */
+  .menu-toggle span::before,
+  .menu-toggle span::after {
+    position: absolute;
+    content: '';
+    left: 0;
+
+    transform: rotate(0deg);
+    transition: all 0.2s ease;
+  }
+
+  /* style menu lines */
+  .menu-toggle span,
+  .menu-toggle span::before,
+  .menu-toggle span::after {
+    display: inline-block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--primary);
+  }
+
+  /* position top menu line */
+  .menu-toggle span::before {
+    margin-top: -8px;
+  }
+
+  /* position bottom menu line */
+  .menu-toggle span::after {
+    margin-top: 8px;
+  }
+
+  /* active */
+  /* hide button span */
+  nav.open .menu-toggle span {
+    background-color: transparent;
+  }
+
+  /* default position for before & after pseudo elements (overlapping in the center of the button) */
+  nav.open .menu-toggle span::before,
+  nav.open .menu-toggle span::after {
+    margin-top: 0;
+  }
+
+  /* rotate top menu line */
+  nav.open .menu-toggle span::before {
+    transform: rotate(45deg);
+  }
+
+  /* rotate bottom menu line */
+  nav.open .menu-toggle span::after {
+    transform: rotate(-45deg);
   }
 
   nav ul {
     display: none;
+  }
+
+  nav.open ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: var(--bgcolor-dark);
+    width: 100vw;
+    height: 100vh;
+    z-index: 99998;
+
+    position: fixed;
+    inset: 0;
   }
 }
 
@@ -169,6 +271,13 @@ nav a:not(.button-link) {
   /* padding-top: 100px;
   padding-bottom: 100px; */
   padding-block: 100px;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 140, 0, 0.641),
+      rgba(30, 79, 164, 0.766)
+    ),
+    url('tree.jpg');
+  background-size: cover;
 }
 
 #intro .container > * {
@@ -200,6 +309,69 @@ h1 {
   }
 }
 
+/* github */
+
+#github .container {
+  border-top: solid var(--primary-muted) 1px;
+  padding-block: 40px 80px;
+}
+
+#reposContainer {
+  display: grid;
+  gap: 20px 40px;
+}
+
+@media (min-width: 46rem) {
+  #reposContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.repo-info {
+  border: solid var(--primary-muted) 1px;
+  padding: 14px 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content auto max-content;
+  gap: 10px 30px;
+
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.repo-info h3,
+.repo-info p.desc {
+  grid-column: 1 / 3;
+}
+
+.repo-info h3 {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.repo-info p.desc {
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.repo-info p.language {
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: var(--blue-muted);
+  color: var(--blue);
+  justify-self: start;
+  padding: 5px 11px;
+  border-radius: 30px;
+}
+
+.repo-info a {
+  font-size: 14px;
+  justify-self: end;
+}
+
 /* portfolio */
 
 .grid-container {
@@ -213,6 +385,11 @@ h1 {
   object-fit: cover;
 }
 
+/* selects all p with a br after it */
+p:has(+ br) {
+  color: rgb(103, 103, 103);
+}
+
 /* pseudo element */
 
 article h3 {
@@ -221,7 +398,7 @@ article h3 {
 
 article h3::after {
   position: absolute;
-  content: "";
+  content: '';
   width: 60px;
   height: 3px;
   background-color: var(--primary);
