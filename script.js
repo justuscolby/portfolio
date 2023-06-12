@@ -40,12 +40,24 @@ fetch('https://api.github.com/users/justuscolby/repos')
       repoInfoDiv.innerHTML = `
         <h3>${repo.name}</h3>
         <p class="desc">${repo.description || ''}</p>
-        <p class="language">${repo.language || ''}</p>
+        <ul id="language-${repo.name}"></ul>
         <a href="${repo.html_url}" target="_blank">View on Github &rarr;</a>
 
       `
 
       reposContainer.appendChild(repoInfoDiv)
+
+      fetch(repo.languages_url)
+        .then((response) => response.json())
+        .then((languagesData) => {
+          const languagesList = document.getElementById(`language-${repo.name}`)
+
+          Object.keys(languagesData).forEach((language) => {
+            const newLanguageEl = document.createElement('li')
+            newLanguageEl.textContent = language
+            languagesList.appendChild(newLanguageEl)
+          })
+        })
     }
   })
   .catch((error) => {

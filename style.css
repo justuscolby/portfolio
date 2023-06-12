@@ -12,6 +12,9 @@
 
   --blue: rgb(74, 174, 255);
   --blue-muted: rgba(74, 174, 255, 0.2);
+
+  --purple: rgb(164, 74, 255);
+  --purple-muted: rgba(164, 74, 255, 0.195);
 }
 
 * {
@@ -332,18 +335,18 @@ h1 {
   padding: 14px 20px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: max-content auto max-content;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max-content auto max-content max-content;
   gap: 10px 30px;
 
   align-items: center;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.repo-info h3,
+/* .repo-info h3,
 .repo-info p.desc {
   grid-column: 1 / 3;
-}
+} */
 
 .repo-info h3 {
   font-family: monospace;
@@ -357,11 +360,22 @@ h1 {
   font-size: 14px;
 }
 
-.repo-info p.language {
+.repo-info ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* a[href^='#1'] {
+  border: solid red 10px;
+} */
+
+.repo-info ul[id^='language'] li {
   font-size: 12px;
   text-transform: uppercase;
-  background-color: var(--blue-muted);
   color: var(--blue);
+  background-color: var(--blue-muted);
   justify-self: start;
   padding: 5px 11px;
   border-radius: 30px;
@@ -383,6 +397,14 @@ h1 {
 .grid-container img {
   aspect-ratio: 1.4;
   object-fit: cover;
+  border: solid white 1px;
+  border-radius: 10px;
+
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.grid-container h3 {
+  margin-block: 10px;
 }
 
 /* selects all p with a br after it */
@@ -406,6 +428,26 @@ article h3::after {
   left: 0px;
 }
 
+article ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 15px;
+  margin-bottom: 7px;
+}
+
+article li {
+  font-size: 12px;
+  color: var(--purple);
+  text-transform: uppercase;
+
+  padding: 3px 6px;
+  border: solid 1px var(--purple-muted);
+  border-radius: 2px;
+}
+
 /* footer */
 
 footer .container {
@@ -413,5 +455,6 @@ footer .container {
   justify-content: space-between;
   align-items: center;
   gap: 40px;
+
   padding-block: 10px;
 }
