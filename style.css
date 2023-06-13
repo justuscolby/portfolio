@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding: 60px;
 }
 
 body {
@@ -50,7 +51,17 @@ img {
   width: 100%;
 }
 
+h2 {
+  font-size: clamp(1.75rem, calc(1.58rem + 0.87vw), 2.25rem);
+  margin-block: 2rem;
+}
+
+h2:has(+ p) {
+  margin-bottom: 0.75rem;
+}
+
 h3 {
+  font-size: clamp(1.25rem, calc(1.12rem + 0.65vw), 1.625rem);
   margin-block: 0;
 }
 
@@ -59,13 +70,19 @@ h3 {
 
   /* width: calc(100% - 200px);
   max-width: 1000px; */
-  width: min(70rem, 100% - 2rem);
+  width: min(70rem, 100% - 4rem);
 
   /* margin-left: auto;
   margin-right: auto; */
   margin-inline: auto;
 
   padding-block: 10px;
+}
+
+@media (min-width: 50rem) {
+  .container {
+    width: min(70rem, 100% - 8rem);
+  }
 }
 
 .button-link {
@@ -300,7 +317,19 @@ h1 {
   padding: 0;
 
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
+}
+
+#skills li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#skills img {
+  height: 22px;
+  width: auto;
 }
 
 @media (min-width: 40rem) {
@@ -353,6 +382,8 @@ h1 {
   font-size: 18px;
   font-weight: 500;
   text-transform: lowercase;
+
+  hyphens: auto;
 }
 
 .repo-info p.desc {
@@ -388,10 +419,20 @@ h1 {
 
 /* portfolio */
 
+#portfolio {
+  padding-block: 40px 80px;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 40px;
+}
+
+@media (min-width: 30rem) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 }
 
 .grid-container img {
@@ -448,6 +489,48 @@ article li {
   border-radius: 2px;
 }
 
+/* Call to action */
+
+#cta .container {
+  background-color: var(--primary);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.218);
+
+  padding: 40px 60px 50px;
+  border-radius: 30px;
+  text-align: center;
+
+  margin-bottom: -80px;
+  position: relative;
+}
+
+#cta img {
+  width: 60px;
+}
+
+#cta h2 {
+  font-size: 30px;
+}
+
+#cta a {
+  display: inline-flex;
+  background-color: white;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: var(--purple) solid 2px;
+
+  color: var(--purple);
+  font-weight: 600;
+  margin-inline: 4px;
+  margin-top: 20px;
+}
+
+#cta i {
+  font-size: 20px;
+}
+
 /* footer */
 
 footer .container {
@@ -456,5 +539,10 @@ footer .container {
   align-items: center;
   gap: 40px;
 
-  padding-block: 10px;
+  padding-block: 140px 30px;
+}
+
+footer * {
+  text-transform: capitalize;
+  font-size: 12px;
 }
