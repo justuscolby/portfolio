@@ -162,10 +162,12 @@ header .container {
   align-items: center;
 
   flex-wrap: wrap;
+  min-height: 4rem;
 }
 
 #myname {
-  font-size: 18px;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 header .button-link {
@@ -192,12 +194,12 @@ nav a:not(.button-link) {
 
 /* mobile nav */
 
-@media (max-width: 40rem) {
+@media (max-width: 54rem) {
   .menu-toggle {
     display: inline-block;
     position: absolute;
-    top: 0rem;
-    right: 0.5rem;
+    top: 0.7rem;
+    right: 2rem;
     z-index: 99999;
 
     /* hamburger styles */
@@ -230,6 +232,7 @@ nav a:not(.button-link) {
     display: inline-block;
     width: 26px;
     height: 2px;
+    border-radius: 2px;
     background-color: var(--primary);
   }
 
@@ -293,20 +296,66 @@ nav a:not(.button-link) {
   padding-block: 100px;
   background: linear-gradient(
       to bottom,
-      rgba(255, 140, 0, 0.641),
-      rgba(30, 79, 164, 0.766)
+      rgba(61, 98, 162, 0.495),
+      rgba(9, 33, 74, 0.795)
     ),
     url('tree.jpg');
   background-size: cover;
 }
 
 #intro .container > * {
-  margin-top: 20px;
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
 }
 
 h1 {
-  font-size: clamp(1.25rem, calc(0.9rem + 1.74vw), 2.25rem);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
   margin: 0;
+}
+
+h1 + p {
+  font-size: clamp(1.25rem, calc(0.9rem + 1.74vw), 2.25rem);
+}
+
+/* ANIMATION */
+
+.text-box {
+  /* border: solid red 1px; */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.text-content {
+  display: inline-block;
+  transform: translateY(120%);
+
+  /* animation: slideUp ease 1.5s;
+  animation-fill-mode: forwards; */
+}
+
+.contact:hover,
+.contact:focus {
+  animation: hueRotate ease 2.2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes hueRotate {
+  0% {
+    background-color: var(--primary);
+  }
+
+  50% {
+    background-color: rgb(230, 209, 153);
+  }
+
+  100% {
+    background-color: var(--primary);
+  }
 }
 
 /* SKILLS */
@@ -449,9 +498,9 @@ h1 {
 }
 
 /* selects all p with a br after it */
-p:has(+ br) {
+/* p:has(+ br) {
   color: rgb(103, 103, 103);
-}
+} */
 
 /* pseudo element */
 
